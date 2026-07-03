@@ -7,13 +7,12 @@
 
 import Foundation
 
-struct Debut: Identifiable, Codable, Sendable {
-    var id: UUID = UUID()
-    let manga: String
-    let anime: String
-    let novel: String
-    let movie: String
-    let game: String
-    let ova: String
-    let appearsIn: String
+struct Debut: Codable, Sendable {
+    let manga: String?
+    let anime: String?
+    let novel: String?
+    let movie: String?
+    let game: String?
+    let ova: String?
+    let appearsIn: String?
 }

@@ -7,15 +7,13 @@
 
 import Foundation
 
-struct Rank: Identifiable, Codable, Sendable {
-    var id: UUID = UUID()
+struct Rank: Codable, Sendable {
     let ninjaRank: NinjaRank
-    let ninjaRegistration: String
+    let ninjaRegistration: String?
     
-    struct NinjaRank: Identifiable, Codable, Sendable {
-        var id: UUID = UUID()
-        let partOne: String
-        let Gaiden: String
+    struct NinjaRank: Codable, Sendable {
+        let partOne: String?
+        let Gaiden: String?
         
         enum CodingKeys: String, CodingKey {
             case partOne = "Part I"

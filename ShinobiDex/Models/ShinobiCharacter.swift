@@ -12,14 +12,14 @@ struct ShinobiCharacter: Identifiable, Codable, Sendable {
     let id: Int
     let name: String
     let images: [String]
-    let debut: [Debut]
-    let family: [Family]
+    let debut: Debut
+    let family: Family
     let jutsu: [String]
     let natureType: [String]
-    let personal: [PersonalInfo]
-    let rank: [Rank]
+    let personal: PersonalInfo
+    let rank: Rank
     let tools: [String]
-    let voiceActors: [VoiceActor]
+    let voiceActors: VoiceActor
 }
 
 

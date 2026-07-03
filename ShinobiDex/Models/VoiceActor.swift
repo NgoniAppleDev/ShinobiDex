@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct VoiceActor: Identifiable, Codable, Sendable {
-    var id: UUID = UUID()
-    let japanese: [String]
-    let english: [String]
+struct VoiceActor: Codable, Sendable {
+    let japanese: [String]?
+    let english: [String]?
 }

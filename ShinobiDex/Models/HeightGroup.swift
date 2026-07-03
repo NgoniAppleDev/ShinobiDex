@@ -7,11 +7,10 @@
 
 import Foundation
 
-struct HeightGroup: Identifiable, Codable, Sendable {
-    var id: UUID = UUID()
-    let partOne: String
-    let partTwo: String
-    let blankPeriod: String
+struct HeightGroup: Codable, Sendable {
+    let partOne: String?
+    let partTwo: String?
+    let blankPeriod: String?
     
     enum CodingKeys: String, CodingKey {
         case partOne = "Part I"

@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct WeightGroup: Identifiable, Codable, Sendable {
-    var id: UUID = UUID()
-    let partOne: String
-    let partTwo: String
+struct WeightGroup: Codable, Sendable {
+    let partOne: String?
+    let partTwo: String?
     
     enum CodingKeys: String, CodingKey {
         case partOne = "Part I"
