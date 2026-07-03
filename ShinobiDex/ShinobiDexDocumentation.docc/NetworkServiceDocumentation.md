@@ -73,3 +73,39 @@ CachedNetworkService
 ```
 
 The ViewModel doesn't have to change at all. 
+
+
+## The flow when making requests
+
+The complete journey of every network request in the app.
+
+```
+ViewModel
+│
+▼
+NetworkService.fetch(...)
+│
+▼
+Endpoint.request
+│
+▼
+URLSession
+│
+▼
+Data + Response
+│
+▼
+Validate HTTP Status
+│
+▼
+JSONDecoder
+│
+▼
+Return T
+```
+
+
+## See Also
+- ``NetworkService``
+- ``NetworkServicing``
+
