@@ -10,11 +10,9 @@ import Foundation
 final class NetworkService: NetworkServicing {
     
     private let session: URLSession
-    private let decoder: JSONDecoder
     
-    init(session: URLSession = .shared, decoder: JSONDecoder = JSONDecoder()) {
+    init(session: URLSession = .shared) {
         self.session = session
-        self.decoder = decoder
     }
     
     func fetch<T: Decodable & Sendable>(_ type: T.Type, from endpoint: Endpoint) async throws -> T {
@@ -44,8 +42,9 @@ final class NetworkService: NetworkServicing {
         
         // 4. decode the response
         do {
-            return try decoder.decode(T.self, from: data)
+            return try JSONCoder.decoder.decode(T.self, from: data)
         } catch {
+            DecoderDiagnostics.log(error, whileDecoding: endpoint.path)
             throw APIError.decodingFailed(error)
         }
     }

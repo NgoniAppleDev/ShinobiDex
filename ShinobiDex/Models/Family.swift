@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Family: Codable, Sendable {
+struct Family: Decodable, Sendable {
     
     let father: String?
     let mother: String?

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterResponse: Codable, Sendable {
+struct CharacterResponse: Decodable, Sendable {
     let characters: [ShinobiCharacter]
     let currentPage: Int
     let pageSize: Int

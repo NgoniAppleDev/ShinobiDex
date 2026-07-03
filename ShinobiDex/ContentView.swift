@@ -16,6 +16,13 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .task {
+            do {
+                try FixtureVerifier.verifyCharactersFixture()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
