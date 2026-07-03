@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  RootView.swift
 //  ShinobiDex
 //
 //  Created by Ngoni Katsidzira  on 3/7/2026.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct RootView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,16 +16,9 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
-        .task {
-            do {
-                try FixtureVerifier.verifyCharactersFixture()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
     }
 }
 
 #Preview {
-    ContentView()
+    RootView()
 }
