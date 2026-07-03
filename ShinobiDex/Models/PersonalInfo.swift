@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PersonalInfo: Identifiable, Codable {
+struct PersonalInfo: Identifiable, Codable, Sendable {
     var id: UUID = UUID()
     let birthdate: String
     let sex: String

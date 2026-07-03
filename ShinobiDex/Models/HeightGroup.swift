@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HeightGroup: Identifiable, Codable {
+struct HeightGroup: Identifiable, Codable, Sendable {
     var id: UUID = UUID()
     let partOne: String
     let partTwo: String

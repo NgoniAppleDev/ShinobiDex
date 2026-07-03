@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeightGroup: Identifiable, Codable {
+struct WeightGroup: Identifiable, Codable, Sendable {
     var id: UUID = UUID()
     let partOne: String
     let partTwo: String
