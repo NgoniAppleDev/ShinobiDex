@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Family: Identifiable, Codable {
+struct Family: Identifiable, Codable, Sendable {
     var id: UUID = UUID()
     let father: String
     let mother: String

@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Rank: Identifiable, Codable {
+struct Rank: Identifiable, Codable, Sendable {
     var id: UUID = UUID()
     let ninjaRank: NinjaRank
     let ninjaRegistration: String
     
-    struct NinjaRank: Identifiable, Codable {
+    struct NinjaRank: Identifiable, Codable, Sendable {
         var id: UUID = UUID()
         let partOne: String
         let Gaiden: String

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Debut: Identifiable, Codable {
+struct Debut: Identifiable, Codable, Sendable {
     var id: UUID = UUID()
     let manga: String
     let anime: String
