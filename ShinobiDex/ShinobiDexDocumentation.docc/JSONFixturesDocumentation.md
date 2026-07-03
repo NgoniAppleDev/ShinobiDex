@@ -86,11 +86,6 @@ No network request needed.
 
 ## What the JSON looks like
 
-### Image
-![17830724893601](assets/17830724893601.jpg)
-
-
-
 ### RAW DATA SHAPE
 
 ```JSON

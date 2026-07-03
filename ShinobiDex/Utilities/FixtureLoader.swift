@@ -9,8 +9,6 @@ import Foundation
 
 enum FixtureLoader {
     
-    private static let decoder = JSONDecoder()
-    
     static func load<T: Decodable & Sendable>(_ type: T.Type, named fileName: String) throws -> T {
         guard let url = Bundle.main.url(
             forResource: fileName, withExtension: "json"
@@ -25,8 +23,9 @@ enum FixtureLoader {
         }
         
         do {
-            return try decoder.decode(T.self, from: data)
+            return try JSONCoder.decoder.decode(T.self, from: data)
         } catch {
+            DecoderDiagnostics.log(error, whileDecoding: fileName)
             throw FixtureError.decodingFailed(error)
         }
     }

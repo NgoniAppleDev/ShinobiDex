@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct PersonalInfo: Codable, Sendable {
+struct PersonalInfo: Decodable, Sendable {
     let birthdate: String?
     let sex: String?
-    let age: AgeGroup
-    let height: HeightGroup
-    let weight: WeightGroup
+    let age: AgeGroup?
+    let height: HeightGroup?
+    let weight: WeightGroup?
     let bloodType: String?
-    let kekkeiGenkai: [String]
-    let classification: [String]
+    @OneOrMany var  kekkeiGenkai: [String] = []
+    @OneOrMany var classification: [String] = []
     let tailedBeast: String?
-    let occupation: [String]
+    @OneOrMany var occupation: [String] = []
     let affiliation: [String]
-    let team: [String]
-    let clan: String?
-    let titles: [String]
+    @OneOrMany var team: [String] = []
+    @OneOrMany var clan: [String] = []
+    @OneOrMany var titles: [String] = []
 }
