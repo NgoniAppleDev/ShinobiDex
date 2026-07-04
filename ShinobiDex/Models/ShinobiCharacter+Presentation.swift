@@ -83,4 +83,12 @@ extension ShinobiCharacter {
     var displayName: String {
         name
     }
+    
+    var affiliationDisplayText: String {
+        "\(affiliationEmoji) \(primaryAffiliation)"
+    }
+    
+    var natureDisplayText: String {
+        "\(natureEmoji) \(primaryNatureType)"
+    }
 }

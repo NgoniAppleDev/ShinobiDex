@@ -21,6 +21,10 @@ struct RemoteImage: View {
                     .scaledToFill()
                     .frame(width: 80, height: 80)
                     .clipShape(.rect(cornerRadius: 12))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(.quaternary, lineWidth: 3)
+                    }
             case .failure:
                 placeholder
             @unknown default:

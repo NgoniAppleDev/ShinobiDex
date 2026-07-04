@@ -20,10 +20,10 @@ struct CharacterRow: View {
                     .fontWeight(.semibold)
                 
                 Group {
-                    Text("\(character.affiliationEmoji) \(character.primaryAffiliation)")
+                    Text(character.affiliationDisplayText)
                         
                     
-                    Text("\(character.natureEmoji) \(character.primaryNatureType)")
+                    Text(character.natureDisplayText)
                 }
                 .foregroundStyle(.secondary)
                 .font(.subheadline)
@@ -31,9 +31,10 @@ struct CharacterRow: View {
             
             Spacer()
         }
+        .padding(.vertical, 8)
     }
 }
 
 //#Preview {
-//    CharacterRow()
+//    CharacterRow(character:)
 //}

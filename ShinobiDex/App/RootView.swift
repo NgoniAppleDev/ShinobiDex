@@ -21,7 +21,11 @@ struct RootView: View {
                     await viewModel.loadCharacters()
                 }) { characters in
                     List(characters) { character in
-                        CharacterRow(character: character)
+                        NavigationLink {
+                            Text(character.displayName)
+                        } label: {
+                            CharacterRow(character: character)
+                        }
                     }
                 }
             .task {
