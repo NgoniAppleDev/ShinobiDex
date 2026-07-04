@@ -17,6 +17,10 @@ final class CharacterListViewModel {
     private var searchTask: Task<Void, Never>?
     var searchText = "" {
         didSet {
+            guard searchText != oldValue else {
+                return
+            }
+            
             scheduleSearch()
         }
     }
@@ -32,7 +36,7 @@ final class CharacterListViewModel {
         self.repository = repository
     }
     
-    func loadCharacters(options: EndpointOptions = .init()) async {
+    private func fetchCharacters(options: EndpointOptions = .init()) async {
         
         state = .loading
         
@@ -55,13 +59,17 @@ final class CharacterListViewModel {
                 if error is CancellationError { return }
             }
             
-            await loadCharacters(options: searchOptions)
+            await fetchCharacters(options: searchOptions)
         }
     }
     
     func load() async {
         guard state.isIdle else { return }
 
-        await loadCharacters(options: searchOptions)
+        await fetchCharacters(options: searchOptions)
+    }
+    
+    func retry() async {
+        await fetchCharacters(options: searchOptions)
     }
 }

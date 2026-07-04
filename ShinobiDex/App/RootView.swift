@@ -18,7 +18,7 @@ struct RootView: View {
                 state: viewModel.state,
                 loadingMessage: "Loading Characters",
                 retry: {
-                    await viewModel.loadCharacters()
+                    await viewModel.retry()
                 }) { characters in
                     List(characters) { character in
                         NavigationLink(value: character) {
