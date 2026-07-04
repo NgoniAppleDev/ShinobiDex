@@ -19,6 +19,20 @@ struct ErrorPresentation: Sendable {
     let title: String
     let message: String
     let systemImage: String
+    
+    static let generic: ErrorPresentation = .init(
+        title: "Network Error",
+        message: "Something went wrong",
+        systemImage: "network.slash"
+    )
+    
+    static func from(_ error: Error) -> ErrorPresentation {
+        if let apiError = error as? APIError {
+            return apiError.presentation
+        }
+        
+        return .generic
+    }
 }
 
 extension APIError {
