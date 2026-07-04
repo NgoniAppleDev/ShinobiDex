@@ -14,16 +14,18 @@ final class CharacterListViewModel {
     private let repository: CharacterRepository
     private(set) var state: LoadState<[ShinobiCharacter]> = .idle
     
+    var searchText = ""
+    
     init(repository: CharacterRepository) {
         self.repository = repository
     }
     
-    func loadCharacters() async {
+    func loadCharacters(options: EndpointOptions = .init()) async {
         
         state = .loading
         
         do {
-            let characters = try await repository.fetchCharacters()
+            let characters = try await repository.fetchCharacters(options: options)
             state = .loaded(characters)
         } catch {
             state = .failed(error)

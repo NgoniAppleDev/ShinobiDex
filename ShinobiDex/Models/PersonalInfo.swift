@@ -18,7 +18,7 @@ struct PersonalInfo: Decodable, Sendable {
     @OneOrMany var classification: [String] = []
     let tailedBeast: String?
     @OneOrMany var occupation: [String] = []
-    let affiliation: [String]
+    @OneOrMany var affiliation: [String] = []
     @OneOrMany var team: [String] = []
     @OneOrMany var clan: [String] = []
     @OneOrMany var titles: [String] = []

@@ -15,10 +15,10 @@ final class RemoteCharacterRepository: CharacterRepository {
         self.networkService = networkService
     }
     
-    func fetchCharacters() async throws -> [ShinobiCharacter] {
+    func fetchCharacters(options: EndpointOptions) async throws -> [ShinobiCharacter] {
         let response = try await networkService.fetch(
             CharacterResponse.self,
-            from: .characters
+            from: .fetchAll(.characters, options: options)
         )
         
         return response.characters

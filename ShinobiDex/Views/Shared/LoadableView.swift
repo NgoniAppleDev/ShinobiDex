@@ -24,7 +24,25 @@ struct LoadableView<Value, Content: View>: View {
             case .loading:
                 LoadingView(message: loadingMessage ?? "Loading...")
             case .loaded(let value):
-                content(value)
+                if let value = value as? [Value], value.isEmpty {
+                    ContentUnavailableView {
+                        Label("No Content", systemImage: "figure.martial.arts.circle")
+                    } description: {
+                        Text("Character(s) not found.")
+                    } actions: {
+                        Button {
+                            Task {
+                                await retry()
+                            }
+                        } label: {
+                            Label("Retry", systemImage: "arrow.clockwise")
+                        }
+                        .buttonStyle(.glassProminent)
+                        .accessibilityLabel("Retry")
+                    }
+                } else {
+                    content(value)
+                }
             case .failed(let error):
                 ErrorView(presentation: .from(error)) {
                     await retry()
