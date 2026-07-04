@@ -1,17 +1,17 @@
 //
-//  CharacterService.swift
+//  RemoteCharacterRepository.swift
 //  ShinobiDex
 //
-//  Created by Ngoni Katsidzira  on 3/7/2026.
+//  Created by Ngoni Katsidzira  on 4/7/2026.
 //
 
 import Foundation
 
-final class CharacterService: CharacterServicing {
+final class RemoteCharacterRepository: CharacterRepository {
     
     private let networkService: NetworkServicing
     
-    init(networkService: NetworkServicing) {
+    init(networkService: NetworkServicing = NetworkService()) {
         self.networkService = networkService
     }
     
