@@ -147,7 +147,7 @@ func fetchCharacters() async throws -> [ShinobiCharacter] {
 }
 ```
 
-The ViewModel still gets `[ShinobiCharater]`
+The ViewModel still gets `[ShinobiCharacter]`
 
 It never learns about
 - page size

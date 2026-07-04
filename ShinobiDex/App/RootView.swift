@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct RootView: View {
+    @State private var viewModel: CharacterListViewModel = .init(
+        repository: RemoteCharacterRepository()
+    )
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            Group {
+                switch viewModel.state {
+                case .idle:
+                    ContentUnavailableView("No Characters", systemImage: "person.slash")
+                case .loading:
+                    ProgressView("Loading Characters...")
+                case .loaded(let characters):
+                    List(characters) { character in
+                        Text(character.name)
+                    }
+                case .failed:
+                    ContentUnavailableView("Something went wrong", systemImage: "exclamationmark.triangle")
+                }
+            }
+            .task {
+                await viewModel.loadCharacters()
+            }
+            .navigationTitle("Shinobi")
         }
-        .padding()
     }
 }
 
