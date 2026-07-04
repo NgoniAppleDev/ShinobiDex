@@ -14,20 +14,16 @@ struct RootView: View {
     
     var body: some View {
         NavigationStack {
-            Group {
-                switch viewModel.state {
-                case .idle:
-                    ContentUnavailableView("No Characters", systemImage: "person.slash")
-                case .loading:
-                    ProgressView("Loading Characters...")
-                case .loaded(let characters):
+            LoadableView(
+                state: viewModel.state,
+                loadingMessage: "Loading Characters",
+                retry: {
+                    await viewModel.loadCharacters()
+                }) { characters in
                     List(characters) { character in
                         Text(character.name)
                     }
-                case .failed:
-                    ContentUnavailableView("Something went wrong", systemImage: "exclamationmark.triangle")
                 }
-            }
             .task {
                 await viewModel.loadCharacters()
             }

@@ -12,47 +12,7 @@ import Foundation
 final class CharacterListViewModel {
     
     private let repository: CharacterRepository
-    private(set) var state: CharacterListState = .idle
-    
-    var characters: [ShinobiCharacter] {
-        guard case .loaded(let characters) = state else {
-            return []
-        }
-
-        return characters
-    }
-    
-    var isLoading: Bool {
-        if case .loading = state {
-            return true
-        }
-        
-        return false
-    }
-    
-    var isIdle: Bool {
-        if case .idle = state {
-            return true
-        }
-        
-        return false
-    }
-    
-    var error: Error? {
-        guard case .failed(let error) = state else {
-            return nil
-        }
-
-        return error
-    }
-    
-    var errorMessage: String? {
-        guard case .failed(let error) = state else {
-            return nil
-        }
-
-        return error.localizedDescription
-    }
+    private(set) var state: LoadState<[ShinobiCharacter]> = .idle
     
     init(repository: CharacterRepository) {
         self.repository = repository
