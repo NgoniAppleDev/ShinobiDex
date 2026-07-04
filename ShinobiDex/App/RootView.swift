@@ -21,7 +21,7 @@ struct RootView: View {
                     await viewModel.loadCharacters()
                 }) { characters in
                     List(characters) { character in
-                        Text(character.name)
+                        CharacterRow(character: character)
                     }
                 }
             .task {
