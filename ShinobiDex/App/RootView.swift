@@ -22,7 +22,7 @@ struct RootView: View {
                 }) { characters in
                     List(characters) { character in
                         NavigationLink {
-                            Text(character.displayName)
+                            CharacterDetailView(character: character)
                         } label: {
                             CharacterRow(character: character)
                         }
