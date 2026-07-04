@@ -7,6 +7,12 @@
 
 import Foundation
 
-protocol CharacterRepository {
-    func fetchCharacters() async throws -> [ShinobiCharacter]
+protocol CharacterRepository: Sendable {
+    func fetchCharacters(options: EndpointOptions) async throws -> [ShinobiCharacter]
+}
+
+extension CharacterRepository {
+    func fetchCharacters() async throws -> [ShinobiCharacter] {
+        try await fetchCharacters(options: .init())
+    }
 }

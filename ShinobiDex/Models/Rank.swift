@@ -8,7 +8,7 @@
 import Foundation
 
 struct Rank: Decodable, Sendable {
-    let ninjaRank: NinjaRank
+    let ninjaRank: NinjaRank?
     let ninjaRegistration: String?
     
     struct NinjaRank: Decodable, Sendable {

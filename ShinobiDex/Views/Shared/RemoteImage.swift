@@ -7,39 +7,74 @@
 
 import SwiftUI
 
+enum RemoteImageStyle {
+    case thumbnail
+    case hero
+}
+
 struct RemoteImage: View {
     let url: URL?
+    var style: RemoteImageStyle = .thumbnail
     
     var body: some View {
         AsyncImage(url: url) { phase in
             switch phase {
             case .empty:
-                ProgressView()
+                content {
+                    ProgressView()
+                }
+                
             case .success(let image):
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 80, height: 80)
-                    .clipShape(.rect(cornerRadius: 12))
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(.quaternary, lineWidth: 3)
-                    }
+                content {
+                    image
+                        .resizable()
+                        .scaledToFill()
+                }
+                
             case .failure:
-                placeholder
+                content {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(.secondary)
+                }
+                
             @unknown default:
-                placeholder
+                content {
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(.secondary)
+                }
             }
         }
     }
     
-    private var placeholder: some View {
-        Image(systemName: "person.circle.fill")
-            .resizable()
-            .scaledToFit()
-//            .padding(12)
-            .frame(width: 80, height: 80)
-            .clipShape(.rect(cornerRadius: 12))
-            .foregroundStyle(.secondary)
+    @ViewBuilder
+    private func content<Content: View>(
+        @ViewBuilder _ view: () -> Content
+    ) -> some View {
+        
+        switch style {
+            
+        case .thumbnail:
+            view()
+                .frame(width: 80, height: 80)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(.quaternary, lineWidth: 1)
+                }
+            
+        case .hero:
+            view()
+                .frame(maxWidth: .infinity)
+                .frame(height: 240)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(.quaternary, lineWidth: 1)
+                }
+        }
     }
 }

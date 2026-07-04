@@ -12,7 +12,7 @@ struct CharacterRow: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
-            RemoteImage(url: character.primaryImageURL)
+            RemoteImage(url: character.primaryImageURL, style: .thumbnail)
             
             VStack(alignment: .leading, spacing: 6) {
                 Text(character.displayName)

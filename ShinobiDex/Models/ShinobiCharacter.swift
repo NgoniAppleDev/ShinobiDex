@@ -19,7 +19,7 @@ struct ShinobiCharacter: Identifiable, Decodable, Sendable {
     let personal: PersonalInfo
     let rank: Rank?
     @OneOrMany var tools: [String] = []
-    let voiceActors: VoiceActor
+    let voiceActors: VoiceActor?
 }
 
 

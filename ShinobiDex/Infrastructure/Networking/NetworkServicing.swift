@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkServicing {
+protocol NetworkServicing: Sendable {
     
     func fetch<T: Decodable & Sendable>(_ type: T.Type, from endpoint: Endpoint) async throws -> T
 }
