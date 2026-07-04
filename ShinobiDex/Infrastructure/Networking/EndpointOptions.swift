@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EndpointOptions: Sendable {
+struct EndpointOptions: Sendable, Equatable {
     let page: Int
     let limit: Int
     let name: String?

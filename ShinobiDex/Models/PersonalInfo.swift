@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PersonalInfo: Decodable, Sendable {
+struct PersonalInfo: Decodable, Hashable, Sendable {
     let birthdate: String?
     let sex: String?
     let age: AgeGroup?

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WeightGroup: Codable, Sendable {
+struct WeightGroup: Codable, Hashable, Sendable {
     let partOne: String?
     let partTwo: String?
     

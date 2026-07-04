@@ -18,35 +18,25 @@ struct RootView: View {
                 state: viewModel.state,
                 loadingMessage: "Loading Characters",
                 retry: {
-                    await viewModel.loadCharacters(options: .init(name: "Naruto"))
+                    await viewModel.loadCharacters()
                 }) { characters in
                     List(characters) { character in
-                        NavigationLink {
-                            CharacterDetailView(character: character)
-                        } label: {
+                        NavigationLink(value: character) {
                             CharacterRow(character: character)
                         }
                     }
                 }
-                .task(id: viewModel.searchText) {
-                    do {
-                        try await Task.sleep(for: .milliseconds(300))
-                    } catch {
-                        if error is CancellationError { return }
-                    }
-                    
-                    let searchText = viewModel.searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-                    if searchText.isEmpty {
-                        await viewModel.loadCharacters()
-                    } else {
-                        await viewModel.loadCharacters(options: .init(name: searchText))
-                    }
+                .task {
+                    await viewModel.load()
                 }
                 .searchable(
                     text: $viewModel.searchText,
                     prompt: "Search Shinobi"
                 )
                 .navigationTitle("Shinobi")
+                .navigationDestination(for: ShinobiCharacter.self) { character in
+                    CharacterDetailView(character: character)
+                }
         }
     }
 }

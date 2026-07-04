@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AgeGroup: Codable, Sendable {
+struct AgeGroup: Codable, Hashable, Sendable {
     let partOne: String?
     let partTwo: String?
     let academyGraduate: String?

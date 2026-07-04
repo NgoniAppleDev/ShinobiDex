@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VoiceActor: Decodable, Sendable {
+struct VoiceActor: Decodable, Hashable, Sendable {
     @OneOrMany var japanese: [String] = []
     @OneOrMany var english: [String] = []
 }

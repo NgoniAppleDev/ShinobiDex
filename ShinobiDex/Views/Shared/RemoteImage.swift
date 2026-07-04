@@ -17,37 +17,44 @@ struct RemoteImage: View {
     var style: RemoteImageStyle = .thumbnail
     
     var body: some View {
-        AsyncImage(url: url) { phase in
-            switch phase {
-            case .empty:
-                content {
-                    ProgressView()
-                }
-                
-            case .success(let image):
-                content {
-                    image
-                        .resizable()
-                        .scaledToFill()
-                }
-                
-            case .failure:
-                content {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(.secondary)
-                }
-                
-            @unknown default:
-                content {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundStyle(.secondary)
+        if let url = url {
+            AsyncImage(url: url) { phase in
+                switch phase {
+                case .empty:
+                    content {
+                        ProgressView()
+                    }
+                    
+                case .success(let image):
+                    content {
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    }
+                    
+                case .failure:
+                    content {
+                        placeholderImage
+                    }
+                    
+                @unknown default:
+                    content {
+                        placeholderImage
+                    }
                 }
             }
+        } else {
+            content {
+                placeholderImage
+            }
         }
+    }
+    
+    var placeholderImage: some View {
+        Image(systemName: "figure.martial.arts")
+            .resizable()
+            .scaledToFit()
+            .foregroundStyle(.secondary)
     }
     
     @ViewBuilder

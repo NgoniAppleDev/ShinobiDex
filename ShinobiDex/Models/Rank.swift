@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Rank: Decodable, Sendable {
+struct Rank: Decodable, Hashable, Sendable {
     let ninjaRank: NinjaRank?
     let ninjaRegistration: String?
     
-    struct NinjaRank: Decodable, Sendable {
+    struct NinjaRank: Decodable, Hashable, Sendable {
         let partOne: String?
         let Gaiden: String?
         

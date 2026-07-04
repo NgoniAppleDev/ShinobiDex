@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ShinobiCharacter: Identifiable, Decodable, Sendable {
+struct ShinobiCharacter: Identifiable, Decodable, Hashable, Sendable {
     let id: Int
     let name: String
     @OneOrMany var images: [String] = []

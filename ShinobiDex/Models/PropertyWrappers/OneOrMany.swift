@@ -10,7 +10,7 @@ import Foundation
 /// Decodes either a single value or an array of values,
 /// always exposing an array to the rest of the application.
 @propertyWrapper
-struct OneOrMany<Value: Codable & Sendable>: Decodable, Sendable {
+struct OneOrMany<Value: Codable & Hashable & Sendable>: Decodable, Hashable, Sendable {
     
     var wrappedValue: [Value]
     

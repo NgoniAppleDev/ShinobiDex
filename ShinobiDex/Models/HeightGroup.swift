@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HeightGroup: Codable, Sendable {
+struct HeightGroup: Codable, Hashable, Sendable {
     let partOne: String?
     let partTwo: String?
     let blankPeriod: String?

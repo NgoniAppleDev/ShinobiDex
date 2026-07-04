@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Debut: Decodable, Sendable {
+struct Debut: Decodable, Hashable, Sendable {
     let manga: String?
     let anime: String?
     let novel: String?
